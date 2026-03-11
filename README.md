@@ -1,37 +1,46 @@
-# nur-packages-template
+# Allen You's NUR Packages
 
-**A template for [NUR](https://github.com/nix-community/NUR) repositories**
+## 警告 / Warning
 
-## Setup
+这个 NUR 仓库包括了一些针对我自己使用场景定制的包。我**不保证**这些包的向后兼容性与功能稳定性。
 
-1. Click on [Use this template](https://github.com/nix-community/nur-packages-template/generate) to start a repo based on this template. (Do _not_ fork it.)
-2. Add your packages to the [pkgs](./pkgs) directory and to
-   [default.nix](./default.nix)
-   * Remember to mark the broken packages as `broken = true;` in the `meta`
-     attribute, or travis (and consequently caching) will fail!
-   * Library functions, modules and overlays go in the respective directories
-3. Choose your CI: Depending on your preference you can use github actions (recommended) or [Travis ci](https://travis-ci.com).
-   - Github actions: Change your NUR repo name and optionally add a cachix name in [.github/workflows/build.yml](./.github/workflows/build.yml) and change the cron timer
-     to a random value as described in the file
-   - Travis ci: Change your NUR repo name and optionally your cachix repo name in 
-   [.travis.yml](./.travis.yml). Than enable travis in your repo. You can add a cron job in the repository settings on travis to keep your cachix cache fresh
-5. Change your travis and cachix names on the README template section and delete
-   the rest
-6. [Add yourself to NUR](https://github.com/nix-community/NUR#how-to-add-your-own-repository)
+This NUR contains packages customized for my own use. I **DO NOT** ensure that they stay backwards compatible or functionally stable.
 
-## README template
+## 如何使用 / How to use
 
-# nur-packages
+```nix
+# flake.nix
+{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nur-allenyou = {
+      url = "github:Allenyou1126/nur-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
 
-**My personal [NUR](https://github.com/nix-community/NUR) repository**
+  outputs = { self, nixpkgs, ... }@inputs: {
+    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        # 从这个仓库添加包 / Add packages from this repo
+        inputs.nur-allenyou.nixosModules.setupOverlay
+      ];
+    };
+  };
+}
+```
 
-<!-- Remove this if you don't use github actions -->
-![Build and populate cache](https://github.com/<YOUR-GITHUB-USER>/nur-packages/workflows/Build%20and%20populate%20cache/badge.svg)
+## 软件包 / Packages
 
-<!--
-Uncomment this if you use travis:
+如无特殊说明，所有包均只为 `x86_64-linux` 平台构建。暂无支持其他平台的计划。
 
-[![Build Status](https://travis-ci.com/<YOUR_TRAVIS_USERNAME>/nur-packages.svg?branch=master)](https://travis-ci.com/<YOUR_TRAVIS_USERNAME>/nur-packages)
--->
-[![Cachix Cache](https://img.shields.io/badge/cachix-<YOUR_CACHIX_CACHE_NAME>-blue.svg)](https://<YOUR_CACHIX_CACHE_NAME>.cachix.org)
+If not specified otherwise, all packages are only built for the `x86_64-linux` platform. No plans to support other platforms currently.
 
+<details>
+<summary>未分类 / Uncategorized (1 package)</summary>
+
+| 状态 / State | 路径 / Path | 包名 / Name | 版本 / Version | 描述 / Description |
+| ----- | ---- | ---- | ------- | ----------- |
+| 正常 / Working | `certimate` | [`certimate`](https://github.com/certimate-go/certimate) | 0.4.18 | An open-source and free self-hosted SSL certificates ACME tool, automates the full-cycle of issuance, deployment, renewal, and monitoring visually. 完全开源免费的自托管 SSL 证书 ACME 工具，申请、部署、续期、监控全流程自动化可视化，支持各大主流云厂商。 |
+</details>

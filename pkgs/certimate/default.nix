@@ -1,9 +1,9 @@
 {
   fetchFromGitHub,
-  buildGoModule,
+  buildGo125Module,
 }:
 
-buildGoModule {
+buildGo125Module {
   pname = "certimate";
   version = "0.4.18";
   src = fetchFromGitHub ({

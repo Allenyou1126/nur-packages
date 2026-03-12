@@ -1,13 +1,11 @@
 {
   fetchFromGitHub,
-  buildGoModule,
+  buildNpmPackage,
   pkgs,
 }:
-let
-  ui = pkgs.callPackage ./ui.nix { };
-in
-buildGoModule {
-  pname = "certimate";
+
+buildNpmPackage {
+  pname = "certimate-ui";
   version = "0.4.18";
   src = fetchFromGitHub ({
     owner = "certimate-go";
@@ -16,10 +14,7 @@ buildGoModule {
     fetchSubmodules = false;
     sha256 = "sha256-xaH4JYD+EuKucFUH5XhOXbp+A8xNimsXKXPXj5C9w8k=";
   });
-  vendorHash = "sha256-a8jSXpJ1z7jY72/lfk4fndBP1Q34IDzDWfZxGDiveQo=";
-  preBuild = ''
-    mkdir -p ./ui
-    cp -r ${ui}/dist ./ui/dist
-  '';
-
+  npmDepsHash = "sha256-tuEfyePwlOy2/mOPdXbqJskO6IowvAP4DWg8xSZwbJw=";
+  npmWorkspace = "ui";
+  nodejs = pkgs.nodejs_24;
 }

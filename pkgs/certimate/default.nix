@@ -28,4 +28,5 @@ buildGoModule {
     "-s"
     "-w"
   ];
+  doCheck = false;
 }

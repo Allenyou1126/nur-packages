@@ -21,5 +21,11 @@ buildGoModule {
     mkdir -p ./ui
     cp -r ${ui}/dist ./ui/dist
   '';
-
+  env = {
+    CGO_ENABLED = 0;
+  };
+  ldflags = [
+    "-s"
+    "-w"
+  ];
 }

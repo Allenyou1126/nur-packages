@@ -20,4 +20,9 @@ buildNpmPackage rec {
   npmDepsHash = "sha256-Lxcz0ztIn4vH+Q4WFcCqlRJOklUyyC2FvVRUqd8Da5I=";
   sourceRoot = "${src.name}/ui";
   nodejs = pkgs.nodejs_24;
+  dontNpmInstall = true;
+  installPhase = ''
+    mkdir -p $out/dist
+    cp -r dist/* $out/dist/
+  '';
 }

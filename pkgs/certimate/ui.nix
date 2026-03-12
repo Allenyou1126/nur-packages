@@ -14,9 +14,9 @@ buildNpmPackage rec {
     fetchSubmodules = false;
     sha256 = "sha256-xaH4JYD+EuKucFUH5XhOXbp+A8xNimsXKXPXj5C9w8k=";
   });
-  npmBuildFlags = [
-    "--max-old-space-size=4096"
-  ];
+  env = {
+    NODE_OPTIONS = "--max-old-space-size=4096";
+  };
   npmDepsHash = "sha256-Lxcz0ztIn4vH+Q4WFcCqlRJOklUyyC2FvVRUqd8Da5I=";
   sourceRoot = "${src.name}/ui";
   nodejs = pkgs.nodejs_24;

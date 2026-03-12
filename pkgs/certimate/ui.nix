@@ -14,7 +14,7 @@ buildNpmPackage rec {
     fetchSubmodules = false;
     sha256 = "sha256-xaH4JYD+EuKucFUH5XhOXbp+A8xNimsXKXPXj5C9w8k=";
   });
-  npmDepsHash = "sha256-tuEfyePwlOy2/mOPdXbqJskO6IowvAP4DWg8xSZwbJw=";
+  npmDepsHash = "sha256-Lxcz0ztIn4vH+Q4WFcCqlRJOklUyyC2FvVRUqd8Da5I=";
   sourceRoot = "${src.name}/ui";
   nodejs = pkgs.nodejs_24;
 }

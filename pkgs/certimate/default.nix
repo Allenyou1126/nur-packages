@@ -13,5 +13,5 @@ buildGoModule {
     fetchSubmodules = false;
     sha256 = "sha256-xaH4JYD+EuKucFUH5XhOXbp+A8xNimsXKXPXj5C9w8k=";
   });
-  vendorHash = "sha256-ZrwFUZDTbJx5qvloVOa5qK1ykKNkUn1hjfz0xf+8sWk=";
+  vendorHash = "sha256-a8jSXpJ1z7jY72/lfk4fndBP1Q34IDzDWfZxGDiveQo=";
 }

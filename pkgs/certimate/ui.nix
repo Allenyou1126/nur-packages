@@ -4,7 +4,7 @@
   pkgs,
 }:
 
-buildNpmPackage {
+buildNpmPackage rec {
   pname = "certimate-ui";
   version = "0.4.18";
   src = fetchFromGitHub ({
@@ -15,6 +15,6 @@ buildNpmPackage {
     sha256 = "sha256-xaH4JYD+EuKucFUH5XhOXbp+A8xNimsXKXPXj5C9w8k=";
   });
   npmDepsHash = "sha256-tuEfyePwlOy2/mOPdXbqJskO6IowvAP4DWg8xSZwbJw=";
-  npmWorkspace = "ui";
+  sourceRoot = "${src.name}/ui";
   nodejs = pkgs.nodejs_24;
 }

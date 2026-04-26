@@ -16,7 +16,5 @@
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
 
-  certimate = pkgs.callPackage ./pkgs/certimate { };
-  # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
-  # ...
 }
+++ (import ./pkgs { inherit pkgs; })

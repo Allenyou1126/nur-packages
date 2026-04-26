@@ -3,14 +3,16 @@
   buildNpmPackage,
   pkgs,
 }:
-
+let
+  pkg_version = "0.4.21";
+in
 buildNpmPackage rec {
   pname = "certimate-ui";
-  version = "0.4.18";
+  version = pkg_version;
   src = fetchFromGitHub ({
     owner = "certimate-go";
     repo = "certimate";
-    rev = "v0.4.18";
+    rev = "v${pkg_version}";
     fetchSubmodules = false;
     sha256 = "sha256-xaH4JYD+EuKucFUH5XhOXbp+A8xNimsXKXPXj5C9w8k=";
   });

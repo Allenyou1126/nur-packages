@@ -1,5 +1,7 @@
+{ pkgs, ... }:
+
 {
-  # Add your overlays here
-  #
-  # my-overlay = import ./my-overlay;
+  default = final: prev: {
+    allenyou-nur = import ../pkgs { inherit pkgs; };
+  };
 }

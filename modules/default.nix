@@ -1,5 +1,5 @@
+{ ... }:
+
 {
-  # Add your NixOS modules here
-  #
-  # my-module = ./my-module;
+  setupOverlay = import ./setupOverlay.nix;
 }

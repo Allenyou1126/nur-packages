@@ -1,10 +1,13 @@
 {
-  description = "My personal NUR repository";
+  description = "Allen You's personal NUR repository";
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
   outputs =
     { self, nixpkgs }:
     let
-      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
+      systems = [
+        "x86_64-linux"
+      ];
+      forAllSystems = nixpkgs.lib.genAttrs systems;
     in
     {
       legacyPackages = forAllSystems (

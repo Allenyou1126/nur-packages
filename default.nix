@@ -17,4 +17,4 @@
   overlays = import ./overlays;
 
 }
-++ (import ./pkgs { inherit pkgs; })
+// (import ./pkgs { inherit pkgs; })

@@ -1,5 +1,5 @@
 { pkgs, ... }:
 
 {
-  certimate = pkgs.callPackage ./certgs/certimate { };
+  certimate = pkgs.callPackage ./certimate { };
 }

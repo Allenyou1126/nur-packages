@@ -4,7 +4,7 @@
   pkgs,
 }:
 let
-  pkg_version = "0.4.29";
+  pkg_version = "0.4.21";
 in
 buildNpmPackage rec {
   pname = "certimate-ui";

@@ -5,7 +5,7 @@
 }:
 let
   ui = pkgs.callPackage ./ui.nix { };
-  version = "0.4.29";
+  version = "0.4.21";
 in
 buildGoModule {
   pname = "certimate";

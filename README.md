@@ -12,7 +12,7 @@ This NUR contains packages customized for my own use. I **DO NOT** ensure that t
 # flake.nix
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nur-allenyou = {
       url = "github:Allenyou1126/nur-packages";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,5 +42,5 @@ If not specified otherwise, all packages are only built for the `x86_64-linux` p
 
 | 状态 / State | 路径 / Path | 包名 / Name | 版本 / Version | 描述 / Description |
 | ----- | ---- | ---- | ------- | ----------- |
-| 跳过测试 / Test Skipped | `certimate` | [`certimate`](https://github.com/certimate-go/certimate) | 0.4.21 | An open-source and free self-hosted SSL certificates ACME tool, automates the full-cycle of issuance, deployment, renewal, and monitoring visually. 完全开源免费的自托管 SSL 证书 ACME 工具，申请、部署、续期、监控全流程自动化可视化，支持各大主流云厂商。 |
+| 跳过测试 / Test Skipped | `certimate` | [`certimate`](https://github.com/certimate-go/certimate) | 0.4.29 | An open-source and free self-hosted SSL certificates ACME tool, automates the full-cycle of issuance, deployment, renewal, and monitoring visually. 完全开源免费的自托管 SSL 证书 ACME 工具，申请、部署、续期、监控全流程自动化可视化，支持各大主流云厂商。 |
 </details>

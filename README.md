@@ -53,3 +53,47 @@ If not specified otherwise, all packages are only built for the `x86_64-linux` p
 | ----- | ---- | ---- | ------- | ----------- |
 | 可用 / Available | `certimate` | [`certimate`](https://github.com/certimate-go/certimate) | 0.4.18 | An open-source and free self-hosted SSL certificates ACME tool, automates the full-cycle of issuance, deployment, renewal, and monitoring visually. 完全开源免费的自托管 SSL 证书 ACME 工具，申请、部署、续期、监控全流程自动化可视化，支持各大主流云厂商。 |
 </details>
+
+## Recado 部署 / Recado deployment
+
+### 用 NixOS 模块（推荐）
+
+```nix
+{
+  imports = [
+    inputs.nur-allenyou.nixosModules.setupOverlay  # 让 pkgs.allenyou-nur.* 可用
+    inputs.nur-allenyou.nixosModules.recado        # services.recado
+  ];
+
+  services.recado = {
+    enable = true;
+    settings = {
+      OIDC_ISSUER_URL = "https://id.example.com";
+      OIDC_CLIENT_ID = "recado";
+      OIDC_REDIRECT_URI = "https://comments.example.com/auth/callback";
+      OIDC_ROLE_PREFIX = "recado";
+      PUBLIC_BASE_URL = "https://comments.example.com";
+    };
+    # 🔑 密钥不进 Nix store（store 全局可读）：用 sops-nix / agenix 生成这个文件，
+    #    至少要有 DATABASE_URL、SESSION_SECRET、SECRETS_KEY、OIDC_CLIENT_SECRET。
+    environmentFile = "/run/secrets/recado.env";
+    database.createLocally = true;   # 可选：在本机跑 PostgreSQL
+  };
+}
+```
+
+`services.recado.package` / `cliPackage` 默认就取本仓库的 `recado` / `recado-cli`，
+不需要额外配置。
+
+> ⚠️ 迁移是**独立步骤**，不会随服务启动自动执行。升级后先
+> `systemctl start recado-migrate`，再 `systemctl restart recado`。
+
+### 不用 NixOS
+
+```bash
+nix build github:Allenyou1126/nur-packages#recado      # → result/bin/recado
+nix build github:Allenyou1126/nur-packages#recado-cli  # → result/bin/{recado-cli,recado-migrate}
+```
+
+完整的环境变量清单、OIDC Provider 配置与反向代理要求见上游
+[`docs/deployment.md`](https://github.com/Allenyou1126/recado/blob/master/docs/deployment.md)。

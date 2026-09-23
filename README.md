@@ -38,6 +38,15 @@ This NUR contains packages customized for my own use. I **DO NOT** ensure that t
 If not specified otherwise, all packages are only built for the `x86_64-linux` platform. No plans to support other platforms currently.
 
 <details>
+<summary>评论系统 / Comment System (2 packages)</summary>
+
+| 状态 / State | 路径 / Path | 包名 / Name | 版本 / Version | 描述 / Description |
+| ----- | ---- | ---- | ------- | ----------- |
+| 可用 / Available | `recado` | [`recado`](https://github.com/Allenyou1126/recado) | unstable-85eb134 | 自托管、多站点、Headless 的评论系统，服务端产物（自包含 `.output`，运行时只需要 Node.js）。Self-hosted, multi-site, headless comment system — server artifact. |
+| 可用 / Available | `recado-cli` | [`recado-cli`](https://github.com/Allenyou1126/recado) | unstable-85eb134 | Recado 运维 CLI（`recado-cli`）与数据库迁移命令（`recado-migrate`）。Operational CLI and database migration command. |
+</details>
+
+<details>
 <summary>未分类 / Uncategorized (1 package)</summary>
 
 | 状态 / State | 路径 / Path | 包名 / Name | 版本 / Version | 描述 / Description |

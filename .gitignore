@@ -1,3 +1,7 @@
 result
 result-*
 
+# 本地验证用的临时目录（nix 缓存、上游仓库浅克隆）
+.nix-work/
+.recado-inspect/
+

@@ -27,7 +27,7 @@
 
 let
   pname = "recado";
-  rev = "2478a82894797c2216d6dea4c3597a55885c124a";
+  rev = "bc595277ce35fb5f9e8e8cc1f61074c0eda28a37";
 
   # 上游 package.json 里版本号是 0.0.0（没有单一真源），用提交号标识构建：
   # store 路径里带上 rev，排查「线上跑的是哪一版」时不用再猜。
@@ -41,7 +41,7 @@ let
     inherit rev;
     # 上游仓库没有打 tag，只能锁 master 上的提交。
     fetchSubmodules = false;
-    hash = "sha256-vQgeQm9ATsTg23r3kaNSGDPpJmBuwFsSz8N2rBU7JWM=";
+    hash = "sha256-6xaMgeMpJ5CVHlz6Hzi9dHG62z3v765ej+oXKVmr/I8=";
 
     # 只用「构建真正会读到的文件」参与构建：文档、Docker、打包脚本本身都与产物无关，
     # 去掉它们可以让改 README / 改 flake 之类的上游提交不触发重新构建。

@@ -42,8 +42,8 @@ If not specified otherwise, all packages are only built for the `x86_64-linux` p
 
 | 状态 / State | 路径 / Path | 包名 / Name | 版本 / Version | 描述 / Description |
 | ----- | ---- | ---- | ------- | ----------- |
-| 可用 / Available | `recado` | [`recado`](https://github.com/Allenyou1126/recado) | unstable-85eb134 | 自托管、多站点、Headless 的评论系统，服务端产物（自包含 `.output`，运行时只需要 Node.js）。Self-hosted, multi-site, headless comment system — server artifact. |
-| 可用 / Available | `recado-cli` | [`recado-cli`](https://github.com/Allenyou1126/recado) | unstable-85eb134 | Recado 运维 CLI（`recado-cli`）与数据库迁移命令（`recado-migrate`）。Operational CLI and database migration command. |
+| 可用 / Available | `recado` | [`recado`](https://github.com/Allenyou1126/recado) | unstable-2478a82 | 自托管、多站点、Headless 的评论系统，服务端产物（自包含 `.output`，运行时只需要 Node.js）。Self-hosted, multi-site, headless comment system — server artifact. |
+| 可用 / Available | `recado-cli` | [`recado-cli`](https://github.com/Allenyou1126/recado) | unstable-2478a82 | Recado 运维 CLI（`recado-cli`）与数据库迁移命令（`recado-migrate`）。Operational CLI and database migration command. |
 </details>
 
 <details>
@@ -83,7 +83,15 @@ If not specified otherwise, all packages are only built for the `x86_64-linux` p
 ```
 
 `services.recado.package` / `cliPackage` 默认就取本仓库的 `recado` / `recado-cli`，
-不需要额外配置。
+不需要额外配置。装进系统 PATH 的 `recado-cli` 是模块生成的包装命令（`cli.package`）：
+服务的配置只活在 systemd 单元里（`Environment=` / `EnvironmentFile=`），所以创建站点用
+
+```bash
+sudo recado-cli site:create --name "我的博客" --origin https://blog.example.com
+```
+
+`sudo` 不是可选项：临时单元要由 PID 1 创建，密钥也由 systemd 以 root 读取
+（因此不会出现在 `ps` 里）。`cli.enable = false` 可以关掉这个命令。
 
 > ⚠️ 迁移是**独立步骤**，不会随服务启动自动执行。升级后先
 > `systemctl start recado-migrate`，再 `systemctl restart recado`。
